@@ -1,0 +1,30 @@
+version: '3.6'
+
+services:
+    db:
+        image: mariadb:10.3.9
+        container_name: db
+        volumes:
+            - data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+    wordpress:
+        image: wordpress:4.9.8
+        container_name: wordpress
+        depends_on:
+            - db
+        volumes:
+            - ./:/var/www/html
+        environment:
+            WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+            WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+            WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+        ports:
+            - 8080:80
+
+volumes:
+    data:
