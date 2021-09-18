@@ -1,7 +1,7 @@
 
 # Docker compose for wordpress
 
-Wordpress 4.9.8 using mariadb
+Wordpress 5.4.2 using mariadb 10.3.9
 
 ## Installation
 
